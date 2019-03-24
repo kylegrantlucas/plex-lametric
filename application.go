@@ -122,11 +122,11 @@ func main() {
 	plexConnection.SubscribeToNotifications(events, ctrlC, onError)
 
 	http.HandleFunc("/", handler)
-	port := "8082"
+	port := "8080"
 	if os.Getenv("PORT") != "" {
 		port = os.Getenv("PORT")
 	}
-	err = http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+	err = http.ListenAndServe(fmt.Sprintf(":%v", port), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
