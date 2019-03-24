@@ -35,7 +35,7 @@ type LametricResponse struct {
 type LametricFrame struct {
 	Text  string `json:"text,omitempty"`
 	Icon  string `json:"icon,omitempty"`
-	Index int    `json:"index,omitempty"`
+	Index int    `json:"index"`
 }
 
 func (n NowPlaying) ToString() string {
