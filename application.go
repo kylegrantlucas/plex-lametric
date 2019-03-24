@@ -68,7 +68,7 @@ func (n NowPlaying) ToString() string {
 }
 
 func main() {
-	plexConnection, err := plex.New("http://192.168.1.120:32400", "scdfmVAfjXHdXZqaQwyx")
+	plexConnection, err := plex.New(os.Getenv("PLEX_HOST"), os.Getenv("PLEX_TOKEN"))
 	if err != nil {
 		log.Fatal(err)
 	}

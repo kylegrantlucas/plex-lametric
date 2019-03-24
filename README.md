@@ -1,51 +1,27 @@
-# discord-lametric
+# plex-lametric
 
-[![pipeline status](https://gitlab.com/kylegrantlucas/discord-lametric/badges/master/pipeline.svg)](https://gitlab.com/kylegrantlucas/discord-lametric/commits/master)
-
-A simple daemon that listens to a Discord server/channels and publishes the messages to a LaMetric clock.
+A simple server that returns a Plex Now Playing display for a LaMetric clock.
 
 ## Usage
 
 ### Go
 
-`$ go get -u github.com/kylegrantlucas/discord-lametric`
+`$ go get -u github.com/kylegrantlucas/plex-lametric`
 
-`$ env DISCORD_EMAIL=xxxx DISCORD_PASSWORD=xxxx DISCORD_SERVER_ID=xxxx LAMETRIC_IP=xxxx LAMETRIC_API_KEY=xxx discord-lametric`
+`$ env PLEX_HOST=xxxx PLEX_TOKEN=xxxx plex-lametric`
 
 ### Docker
 
-`$ docker run -e DISCORD_EMAIL=xxxx -e DISCORD_PASSWORD=xxxx -e DISCORD_SERVER_ID=xxxx -e LAMETRIC_IP=xxxx -e LAMETRIC_API_KEY=xxx kylegrantlucas/discord-lametric`
+`$ docker run -e PLEX_HOST=xxxx -e PLEX_TOKEN=xxxx kylegrantlucas/plex-lametric`
 
 ### Docker Compose
 
 ```yaml
-discord-lametric:
-    container_name: discord-lametric
-    image: kylegrantlucas/discord-lametric
+plex-lametric:
+    container_name: plex-lametric
+    image: kylegrantlucas/plex-lametric
     environment:
-      - DISCORD_EMAIL=xxxx
-      - DISCORD_PASSWORD=xxxx
-      - DISCORD_TOKEN=xxxx
-      - LAMETRIC_IP=xxxx
-      - LAMETRIC_API_KEY=xxxx
-      - LAMETRIC_ICON_ID=xxxx
-      - DISCORD_SERVER_ID=xxxxx
-      - DISCORD_CHANNELS=xxxx,xxxx
+      - PLEX_HOST=xxxx
+      - PLEX_TOKEN=xxxx
     restart: unless-stopped
 ```
-
-## Channel Selection
-
-To limit the channels you listen to, simply pass teh environment variable `DISCORD_CHANNEL` with a comma seperate list of channels to listen on.
-
-Example:
-
-`DISCORD_CHANNEL=general,offtopic`
-
-## LaMetric Icon
-
-To specify a custom icon for the LaMetric notifications, set `LAMETRIC_ICON_ID`:
-
-Example:
-
-`LAMETRIC_ICON_ID=24240`
