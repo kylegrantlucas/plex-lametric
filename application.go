@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"strconv"
@@ -24,6 +26,11 @@ type NowPlaying struct {
 	Resolution string
 	Season     int64
 	Episode    int64
+}
+
+type LametricResponse struct {
+	Text string `json:"text,omitempty"`
+	Icon string `json:"icon,omitempty"`
 }
 
 func (n NowPlaying) ToString() string {
@@ -82,7 +89,6 @@ func main() {
 
 	events := plex.NewNotificationEvents()
 	events.OnPlaying(func(n plex.NotificationContainer) {
-		log.Print(n)
 		sessionID := n.PlaySessionStateNotification[0].SessionKey
 
 		sessions, err := plexConnection.GetSessions()
@@ -109,13 +115,21 @@ func main() {
 				Episode:    session.Index,
 			}
 
-			log.Print(nowPlaying.ToString())
-
 			break
 		}
 	})
 
 	plexConnection.SubscribeToNotifications(events, ctrlC, onError)
+
+	http.HandleFunc("/", handler)
+	port := "8082"
+	if os.Getenv("PORT") != "" {
+		port = os.Getenv("PORT")
+	}
+	err = http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	endWaiter := sync.WaitGroup{}
 	endWaiter.Add(1)
@@ -128,4 +142,19 @@ func main() {
 	}()
 
 	endWaiter.Wait()
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Add("Content-Type", "application/json")
+	response := LametricResponse{
+		Text: nowPlaying.ToString(),
+		Icon: "i24240",
+	}
+
+	body, err := json.Marshal(response)
+	if err != nil {
+		log.Print(err)
+	}
+
+	w.Write(body)
 }
