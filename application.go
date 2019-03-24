@@ -29,8 +29,13 @@ type NowPlaying struct {
 }
 
 type LametricResponse struct {
-	Text string `json:"text,omitempty"`
-	Icon string `json:"icon,omitempty"`
+	Frames []LametricFrame `json:"frames,omitempty"`
+}
+
+type LametricFrame struct {
+	Text  string `json:"text,omitempty"`
+	Icon  string `json:"icon,omitempty"`
+	Index int    `json:"index,omitempty"`
 }
 
 func (n NowPlaying) ToString() string {
@@ -147,8 +152,12 @@ func main() {
 func handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "application/json")
 	response := LametricResponse{
-		Text: nowPlaying.ToString(),
-		Icon: "i24240",
+		Frames: []LametricFrame{
+			{
+				Text: nowPlaying.ToString(),
+				Icon: "i24240",
+			},
+		},
 	}
 
 	body, err := json.Marshal(response)
