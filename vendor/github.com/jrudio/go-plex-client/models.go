@@ -74,7 +74,7 @@ type Metadata struct {
 	TitleSort             string       `json:"titleSort"`
 	Type                  string       `json:"type"`
 	UpdatedAt             int          `json:"updatedAt"`
-	ViewCount             interface{}  `json:"viewCount"`
+	ViewCount             int          `json:"viewCount"`
 	ViewOffset            int          `json:"viewOffset"`
 	Year                  int          `json:"year"`
 	Director              []TaggedData `json:"Director"`
@@ -251,23 +251,23 @@ type plexResponse struct {
 
 type killTranscodeResponse struct {
 	Children []struct {
-		ElementType   string      `json:"_elementType"`
-		AudioChannels int         `json:"audioChannels"`
-		AudioCodec    string      `json:"audioCodec"`
-		AudioDecision string      `json:"audioDecision"`
-		Container     string      `json:"container"`
-		Context       string      `json:"context"`
-		Duration      int         `json:"duration"`
-		Height        int         `json:"height"`
-		Key           string      `json:"key"`
-		Progress      interface{} `json:"progress"`
-		Protocol      string      `json:"protocol"`
-		Remaining     int         `json:"remaining"`
-		Speed         float64     `json:"speed"`
-		Throttled     bool        `json:"throttled"`
-		VideoCodec    string      `json:"videoCodec"`
-		VideoDecision string      `json:"videoDecision"`
-		Width         int         `json:"width"`
+		ElementType   string  `json:"_elementType"`
+		AudioChannels int     `json:"audioChannels"`
+		AudioCodec    string  `json:"audioCodec"`
+		AudioDecision string  `json:"audioDecision"`
+		Container     string  `json:"container"`
+		Context       string  `json:"context"`
+		Duration      int     `json:"duration"`
+		Height        int     `json:"height"`
+		Key           string  `json:"key"`
+		Progress      float64 `json:"progress"`
+		Protocol      string  `json:"protocol"`
+		Remaining     int     `json:"remaining"`
+		Speed         float64 `json:"speed"`
+		Throttled     bool    `json:"throttled"`
+		VideoCodec    string  `json:"videoCodec"`
+		VideoDecision string  `json:"videoDecision"`
+		Width         int     `json:"width"`
 	} `json:"_children"`
 	ElementType string `json:"_elementType"`
 }
