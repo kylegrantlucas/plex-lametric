@@ -333,6 +333,10 @@ func getAppleTVStatus() AppleTVHomeAssistantState {
 func buildNowPlaying(atv AppleTVHomeAssistantState, plexHA PlexHomeAssistantState, plexDirect plex.MetadataV1) NowPlaying {
 	var nowPlaying NowPlaying
 
+	if atv.State != "playing" && atv.State != "paused" {
+		return nowPlaying
+	}
+
 	if plexHA.State == "playing" {
 		if plexHA.Attributes.MediaSeriesTitle == plexDirect.GrandparentTitle && plexHA.Attributes.MediaTitle == plexDirect.Title {
 			viewOffset, _ := strconv.Atoi(plexDirect.ViewOffset)
