@@ -119,16 +119,16 @@ func (n NowPlaying) ToString() string {
 		str += n.ShowTitle
 	}
 
+	if n.Season != 0 && n.Episode != 0 {
+		str += fmt.Sprintf(" S%02d · E%02d:", n.Season, n.Episode)
+	}
+
 	if n.Title != "" {
 		if str == "" {
 			str += n.Title
 		} else {
-			str += fmt.Sprintf(" - %s", n.Title)
+			str += fmt.Sprintf(" %s", n.Title)
 		}
-	}
-
-	if n.Season != 0 && n.Episode != 0 {
-		str += fmt.Sprintf(" - S%02dE%02d", n.Season, n.Episode)
 	}
 
 	if n.Resolution != nil {
@@ -226,12 +226,6 @@ func main() {
 func handler(w http.ResponseWriter, r *http.Request) {
 	appleTVStatus := getAppleTVStatus()
 	plexHAStatus := getPlexHomeAssistantStatus()
-
-	log.Println(appleTVStatus)
-	log.Print("\n\n")
-	log.Println(plexHAStatus)
-	log.Print("\n\n")
-	log.Println(plexStatus)
 
 	nowPlaying = buildNowPlaying(appleTVStatus, plexHAStatus, plexStatus)
 
