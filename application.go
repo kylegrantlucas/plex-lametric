@@ -17,7 +17,7 @@ import (
 )
 
 var nowPlaying NowPlaying
-var plexStatus plex.MetadataV1
+var plexStatus plex.MetadawtaV1
 
 func init() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
@@ -102,6 +102,10 @@ type AppleTVHomeAssistantState struct {
 }
 
 func (n NowPlaying) ToString() string {
+	if n.Title == "FuboTV" {
+		return "FuboTV · Live"
+	}
+
 	if n.Resolution != nil {
 		res := *n.Resolution
 		if strings.EqualFold(res, "4K") || res == "2160" || strings.EqualFold(res, "2160p") {
@@ -356,9 +360,15 @@ func buildNowPlaying(atv AppleTVHomeAssistantState, plexHA PlexHomeAssistantStat
 			}
 		}
 	} else {
-		nowPlaying = NowPlaying{
-			Title:    atv.Attributes.MediaArtist + " " + atv.Attributes.MediaTitle,
-			Progress: float64(atv.Attributes.MediaPosition) / float64(atv.Attributes.MediaDuration),
+		if atv.Attributes.MediaAlbumName == "FuboTV" {
+			nowPlaying = NowPlaying{
+				Title: atv.Attributes.MediaAlbumName,
+			}
+		} else {
+			nowPlaying = NowPlaying{
+				Title:    atv.Attributes.MediaArtist + " " + atv.Attributes.MediaTitle,
+				Progress: float64(atv.Attributes.MediaPosition) / float64(atv.Attributes.MediaDuration),
+			}
 		}
 	}
 
