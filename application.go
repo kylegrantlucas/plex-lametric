@@ -17,7 +17,7 @@ import (
 )
 
 var nowPlaying NowPlaying
-var plexStatus plex.MetadawtaV1
+var plexStatus plex.MetadataV1
 
 func init() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
