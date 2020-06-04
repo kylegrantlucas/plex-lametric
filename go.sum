@@ -1,6 +1,4 @@
 github.com/AndreasBriese/bbloom v0.0.0-20190306092124-e2d15f34fcf9/go.mod h1:bOvUY6CB00SOBii9/FifXqc0awNKxLFCL/+pkDPuyl8=
-github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
-github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dgraph-io/badger v0.9.0/go.mod h1:VZxzAIRPHRVNRKRo6AXrX9BJegn6il06VMTZVJYCIjQ=
 github.com/dgryski/go-farm v0.0.0-20190423205320-6a90982ecee2/go.mod h1:SqUrOPUnsFjfmXRMNPybcSiG0BgUW2AuFH8PAnS2iTw=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
@@ -12,10 +10,6 @@ github.com/gorilla/websocket v1.4.2 h1:+/TMaTYc4QFitKJxsQ7Yye35DkWvkdLcvGKqM+x0U
 github.com/gorilla/websocket v1.4.2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
 github.com/jrudio/go-plex-client v0.0.0-20190928061814-aa06dc3ae0bd h1:E5zDSQjZ2qZGDH1fmxyuoVF76sibMp9UOZ6lofVsr48=
 github.com/jrudio/go-plex-client v0.0.0-20190928061814-aa06dc3ae0bd/go.mod h1:Zj1gmgaMFoq5G/7sK6nby3yPuDOAYw9QWYnsOVu5xbA=
-github.com/kylegrantlucas/go-hass v0.0.1 h1:cOFQHHylzmj7Dt1Q+cLpyzRuaBUqYO4IFEWm7Npba+g=
-github.com/kylegrantlucas/go-hass v0.0.1/go.mod h1:RALc15jeKZhf4K3juNUOakiCPTDCQkXpCTOrn9+kSZE=
-github.com/kylegrantlucas/go-hass v0.0.2 h1:cX9j97x2YIR5oqlcUBGrgdOD5FPyKiGRwGPKFUGV6LE=
-github.com/kylegrantlucas/go-hass v0.0.2/go.mod h1:RALc15jeKZhf4K3juNUOakiCPTDCQkXpCTOrn9+kSZE=
 github.com/kylegrantlucas/go-hass v0.0.3 h1:Ftcj9X3+Xyg5ePA0/da9jqsTufiIZWjEryA1EYe7eyE=
 github.com/kylegrantlucas/go-hass v0.0.3/go.mod h1:RALc15jeKZhf4K3juNUOakiCPTDCQkXpCTOrn9+kSZE=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
