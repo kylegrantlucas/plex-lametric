@@ -237,14 +237,36 @@ func buildNowPlaying(atv, plexHA hass.State, plexDirect plex.MetadataV1) NowPlay
 			}
 		}
 	} else {
-		if *atv.Attributes.MediaAlbumName == "FuboTV" {
+		if atv.Attributes.MediaAlbumName != nil && *atv.Attributes.MediaAlbumName == "FuboTV" {
 			nowPlaying = NowPlaying{
 				Title: *atv.Attributes.MediaAlbumName,
 			}
 		} else {
+			mediaArtist := ""
+			mediaTitle := ""
+
+			if atv.Attributes.MediaArtist != nil {
+				mediaArtist = *atv.Attributes.MediaArtist
+			}
+
+			if atv.Attributes.MediaTitle != nil {
+				mediaTitle = *atv.Attributes.MediaTitle
+			}
+
+			mediaPosition := 0.0
+			mediaDuration := 0.0
+
+			if atv.Attributes.MediaPosition != nil {
+				mediaPosition = float64(*atv.Attributes.MediaPosition)
+			}
+
+			if atv.Attributes.MediaDuration != nil {
+				mediaDuration = float64(*atv.Attributes.MediaDuration)
+			}
+
 			nowPlaying = NowPlaying{
-				Title:    *atv.Attributes.MediaArtist + " " + *atv.Attributes.MediaTitle,
-				Progress: float64(*atv.Attributes.MediaPosition) / float64(*atv.Attributes.MediaDuration),
+				Title:    mediaArtist + " " + mediaTitle,
+				Progress: float64(mediaPosition) / float64(mediaDuration),
 			}
 		}
 	}
