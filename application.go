@@ -86,7 +86,7 @@ func (n NowPlaying) ToString() string {
 		str = "Nothing is currently playing"
 	}
 
-	return str
+	return strings.TrimSpace(str)
 }
 
 func main() {
