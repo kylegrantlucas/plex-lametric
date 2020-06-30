@@ -213,7 +213,17 @@ func buildNowPlaying(atv, plexHA hass.State, plexDirect plex.MetadataV1) NowPlay
 	}
 
 	if plexHA.State == "playing" {
-		if *plexHA.Attributes.MediaSeriesTitle == plexDirect.GrandparentTitle && *plexHA.Attributes.MediaTitle == plexDirect.Title {
+		var mediaSeriesTitle string
+		var mediaTitle string
+		if plexHA.Attributes.MediaSeriesTitle != nil {
+			mediaSeriesTitle = *plexHA.Attributes.MediaSeriesTitle
+		}
+
+		if plexHA.Attributes.MediaTitle != nil {
+			mediaTitle = *plexHA.Attributes.MediaTitle
+		}
+
+		if mediaSeriesTitle == plexDirect.GrandparentTitle && mediaTitle == plexDirect.Title {
 			viewOffset, _ := strconv.Atoi(plexDirect.ViewOffset)
 			duration, _ := strconv.Atoi(plexDirect.Duration)
 			resolution := plexDirect.Media[0].VideoResolution
