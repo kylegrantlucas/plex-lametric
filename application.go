@@ -83,7 +83,7 @@ func (n NowPlaying) ToString() string {
 	}
 
 	if n.Title == "" {
-		str = "Nothing is currently playing"
+		str = "N/A"
 	}
 
 	return strings.TrimSpace(str)
