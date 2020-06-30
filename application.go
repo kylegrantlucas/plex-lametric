@@ -238,7 +238,10 @@ func buildNowPlaying(atv, plexHA hass.State, plexDirect plex.MetadataV1) NowPlay
 			}
 		} else {
 			var episodeTitle string
-
+			var mediaSeason int64
+			if plexHA.Attributes.MediaSeason != nil {
+				mediaSeason = int64(*plexHA.Attributes.MediaSeason)
+			}
 			if plexHA.Attributes.MediaEpisode != nil {
 				episodeTitle = *plexHA.Attributes.MediaEpisode
 			}
@@ -247,7 +250,7 @@ func buildNowPlaying(atv, plexHA hass.State, plexDirect plex.MetadataV1) NowPlay
 				ShowTitle: mediaSeriesTitle,
 				Title:     mediaTitle,
 				Progress:  float64(*plexHA.Attributes.MediaPosition) / float64(*plexHA.Attributes.MediaDuration),
-				Season:    int64(*plexHA.Attributes.MediaSeason),
+				Season:    mediaSeason,
 				Episode:   int64(episode),
 			}
 		}
