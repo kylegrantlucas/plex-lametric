@@ -237,10 +237,15 @@ func buildNowPlaying(atv, plexHA hass.State, plexDirect plex.MetadataV1) NowPlay
 				Episode:    plexDirect.Index,
 			}
 		} else {
-			episode, _ := strconv.Atoi(*plexHA.Attributes.MediaEpisode)
+			var episodeTitle string
+
+			if plexHA.Attributes.MediaEpisode != nil {
+				episodeTitle = *plexHA.Attributes.MediaEpisode
+			}
+			episode, _ := strconv.Atoi(episodeTitle)
 			nowPlaying = NowPlaying{
-				ShowTitle: *plexHA.Attributes.MediaSeriesTitle,
-				Title:     *plexHA.Attributes.MediaTitle,
+				ShowTitle: mediaSeriesTitle,
+				Title:     mediaTitle,
 				Progress:  float64(*plexHA.Attributes.MediaPosition) / float64(*plexHA.Attributes.MediaDuration),
 				Season:    int64(*plexHA.Attributes.MediaSeason),
 				Episode:   int64(episode),
