@@ -72,7 +72,7 @@ type State struct {
 		MediaContentRating     *string    `json:"media_content_rating"`
 		MediaContentType       *string    `json:"media_content_type"`
 		MediaDuration          *int       `json:"media_duration"`
-		MediaEpisode           *string    `json:"media_episode"`
+		MediaEpisode           *int       `json:"media_episode"`
 		MediaLibraryName       *string    `json:"media_library_name"`
 		MediaPosition          *int       `json:"media_position"`
 		MediaPositionUpdatedAt *time.Time `json:"media_position_updated_at"`
