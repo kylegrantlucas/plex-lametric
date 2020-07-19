@@ -65,7 +65,7 @@ func (n NowPlaying) ToString() string {
 	}
 
 	if n.Season != 0 && n.Episode != 0 {
-		str += fmt.Sprintf(" S%02d · E%02d:", n.Season, n.Episode)
+		str += fmt.Sprintf(" S%v · E%v:", n.Season, n.Episode)
 	}
 
 	if n.Title != "" {
