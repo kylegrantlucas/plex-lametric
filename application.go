@@ -28,8 +28,8 @@ type NowPlaying struct {
 	ShowTitle  string
 	Title      string
 	Resolution *string
-	Season     int64
-	Episode    int64
+	Season     int
+	Episode    int
 }
 
 type LametricResponse struct {
@@ -65,7 +65,7 @@ func (n NowPlaying) ToString() string {
 	}
 
 	if n.Season != 0 && n.Episode != 0 {
-		str += fmt.Sprintf(" S%v · E%v:", n.Season, n.Episode)
+		str += fmt.Sprintf(" S%02d · E%02d:", n.Season, n.Episode)
 	}
 
 	if n.Title != "" {
@@ -141,8 +141,8 @@ func main() {
 				Title:      session.Title,
 				Progress:   float64(viewOffset) / float64(duration),
 				Resolution: &session.Media[0].VideoResolution,
-				Season:     session.ParentIndex,
-				Episode:    session.Index,
+				Season:     int(session.ParentIndex),
+				Episode:    int(session.Index),
 			}
 
 			break
@@ -233,8 +233,8 @@ func buildNowPlaying(atv, plexHA hass.State, plexDirect plex.MetadataV1) NowPlay
 				Title:      plexDirect.Title,
 				Progress:   float64(viewOffset) / float64(duration),
 				Resolution: &resolution,
-				Season:     plexDirect.ParentIndex,
-				Episode:    plexDirect.Index,
+				Season:     int(plexDirect.ParentIndex),
+				Episode:    int(plexDirect.Index),
 			}
 		} else {
 			var episodeNumber int
@@ -251,8 +251,8 @@ func buildNowPlaying(atv, plexHA hass.State, plexDirect plex.MetadataV1) NowPlay
 				ShowTitle: mediaSeriesTitle,
 				Title:     mediaTitle,
 				Progress:  float64(*plexHA.Attributes.MediaPosition) / float64(*plexHA.Attributes.MediaDuration),
-				Season:    int64(mediaSeason),
-				Episode:   int64(episodeNumber),
+				Season:    mediaSeason,
+				Episode:   episodeNumber,
 			}
 		}
 	} else {
